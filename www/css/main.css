@@ -1,0 +1,447 @@
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* Background palette credit: http://www.colourlovers.com/palette/475875/Gentle_Waves*/
+
+
+.ui-content {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#D3E2B6;
+    background-image:linear-gradient(top, #68B3AF 75%, #87BDB1 50%, #AACCB1 25%, #D3E2B6 0%);
+    background-image:-webkit-linear-gradient(top, #68B3AF 51%, #AACCB1 25%,  #D3E2B6 0%);
+    background-image:-ms-linear-gradient(top, #68B3AF 51%, #AACCB1 25%,  #D3E2B6 0%);
+    background-image:-moz-linear-gradient(top, #D3E2B6 0%, #AACCB1 25%,  #68B3AF 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.75, #68B3AF),
+        color-stop(0.51, #87BDB1),
+        color-stop(0.25, #AACCB1),
+        color-stop(0, #D3E2B6)
+    );
+    background-attachment:fixed;
+    font-family:'Lora', Times, serif;
+    font-size:0.85em;
+    height:100vh;
+    margin:0px;
+    padding:0px;
+    width:100%;
+    overflow:none;
+}
+
+b {
+    font-weight: 700;
+}
+
+/* Loading ellipsis animation */
+.dot-one {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.0s;
+    animation: dot 1.3s infinite;
+    animation-delay: 0.0s;
+}
+
+.dot-two {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.2s;
+      animation: dot 1.3s infinite;
+      animation-delay: 0.2s;
+}
+
+.dot-three {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.3s;
+     animation: dot 1.3s infinite;
+     animation-delay: 0.3s;
+}
+
+@-webkit-keyframes dot {
+      0% { opacity: 0; }
+     50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes dot {
+      0% { opacity: 0; }
+     50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Portrait layout (default) */
+
+
+h1 {
+    font-size:4em;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.text-button {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    background-color:#4B946A;
+    font-size:3em;
+    padding:0.5em;
+    width: auto;
+    text-align: center;
+    vertical-align: baseline;
+    display:inline-block;
+}
+
+.loading, .complete {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10vh;
+}
+
+.complete {
+    display:none;
+}
+
+.blink {
+    animation:fade 1500ms infinite;
+    -webkit-animation:fade 1500ms infinite;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+#game-wrapper {
+    text-align: center;
+    font-size: 0.75em;
+    height: 90vh;
+    /*display: table;*/
+    width:100%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+#game-wrapper .vert-align {
+    margin: 2% auto 2% auto;
+    height: 25%;
+    /*display: table-row;*/
+    vertical-align: middle;
+}
+
+.infobox {
+ margin: 5%;
+ text-align: center;
+ font-size: 2em;
+}
+
+.plain-bounce {
+    animation:plainbounce ease-in-out 1500ms infinite;
+    -webkit-animation:plainbounce ease-in-out 1500ms infinite;
+    -moz-animation:plainbounce ease-in-out 1500ms infinite;
+    -o-animation:plainbounce ease-in-out 1500ms infinite;
+}
+
+@keyframes plainbounce {
+    from {margin-top: 0; }
+    50% { margin-top: 5%; }
+    to { margin-top: 0; }
+}
+ 
+@-webkit-keyframes plainbounce {
+    from { margin-top: 0; }
+    50% { margin-top: 5%; }
+    to { margin-top: 0; }
+}
+
+@-o-keyframes plainbounce {
+    from { margin-top: 0; }
+    50% { margin-top: 5%; }
+    to { margin-top: 0; }
+}
+ 
+@-moz-webkit-keyframes plainbounce {
+    from { margin-top: 0; }
+    50% { margin-top: 5%; }
+    to { margin-top: 0; }
+}
+
+
+/*SPRITESHEET*/
+
+
+    /*BUBBLEFISH*/
+    @-webkit-keyframes bubbleplay {
+        from { background-position: -2700px; }
+        to { background-position: -3600px; }  /* <-- width of spritesheet*/
+    }
+
+    @-moz-keyframes bubbleplay {
+        from { background-position: -2700px; }
+        to { background-position: -3600px; } /* <-- width of spritesheet*/
+    }
+
+    @-o-keyframes bubbleplay {
+        from { background-position: -2700px; }
+        to { background-position: -3600px; } /* <-- width of spritesheet*/
+    }
+
+    @keyframes bubbleplay {
+        from { background-position: -2700px; }
+        to { background-position: -3600px; } /* <-- width of spritesheet*/
+    }
+
+    .bubblefish {
+        width: 300px;
+        height: 255px;
+        background-image: url("../imgs/spritesheet-new.png"); /* <-- url to spritesheet*/
+        background-size: 1200% 100%;
+        background-position: -81.81% 0; /* 2700 / (3600-300) * 100 */
+        background-repeat: no-repeat;
+        margin: 0 auto;    
+        -webkit-animation: bubbleplay 0.3s steps(3) infinite; 
+        -moz-animation: bubbleplay 0.3s steps(3) infinite;
+        -o-animation: bubbleplay 0.3s steps(3) infinite;
+        animation: bubbleplay 0.3s steps(3) infinite;
+    }  
+
+    /*LEAFFISH*/
+    @-webkit-keyframes leafplay {
+        from { background-position: -1800px; }
+        to { background-position: -2700px; }  /* <-- width of spritesheet*/
+    }
+
+    @-moz-keyframes leafplay {
+        from { background-position: -1800px; }
+        to { background-position: -2700px; } /* <-- width of spritesheet*/
+    }
+
+    @-o-keyframes leafplay {
+        from { background-position: -1800px; }
+        to { background-position: -2700px; }/* <-- width of spritesheet*/
+    }
+
+    @keyframes leafplay {
+        from { background-position: -1800px; }
+        to { background-position: -2700px; } /* <-- width of spritesheet*/
+    }
+
+    .leaffish {
+        width: 300px;
+        height: 255px;
+        background-image: url("../imgs/spritesheet-new.png"); /* <-- url to spritesheet*/
+        background-repeat: no-repeat;
+        background-size: 1200% 100%;
+        background-position: -54.54% 0; /* 1800 / (3600-300) * 100 */
+        margin: 0 auto;    
+        -webkit-animation: leafplay 0.3s steps(3) infinite; 
+        -moz-animation: leafplay 0.3s steps(3) infinite;
+        -o-animation: leafplay 0.3s steps(3) infinite;
+        animation: leafplay 0.3s steps(3) infinite;
+    }  
+
+    /*BRUSHFISH*/
+    @-webkit-keyframes brushplay {
+        from { background-position: -900px; }
+        to { background-position: -1800px; }  /* <-- width of spritesheet*/
+    }
+
+    @-moz-keyframes brushplay {
+        from { background-position: -900px; }
+        to { background-position: -1800px; } /* <-- width of spritesheet*/
+    }
+
+    @-o-keyframes brushplay {
+        from { background-position: -900px; }
+        to { background-position: -1800px; } /* <-- width of spritesheet*/
+    }
+
+    @keyframes brushplay {
+        from { background-position: -900px; }
+        to { background-position: -1800px; } /* <-- width of spritesheet*/
+    }
+
+    .brushfish {
+        width: 300px;
+        height: 255px;
+        background-image: url("../imgs/spritesheet-new.png"); /* <-- url to spritesheet*/
+        background-size: 1200% 100%;
+        background-repeat: no-repeat;
+        background-position: -27.27% 0; /* 900 / (3600-300) * 100 */
+        margin: 0 auto;    
+        -webkit-animation: brushplay 0.3s steps(3) infinite; 
+        -moz-animation: brushplay 0.3s steps(3) infinite;
+        -o-animation: brushplay 0.3s steps(3) infinite;
+        animation: brushplay 0.3s steps(3) infinite;
+    }    
+
+
+    /*PLAINFISH*/
+    @-webkit-keyframes plainplay {
+        from { background-position: 0; }
+        to { background-position: -300%; }  /* <-- width of spritesheet*/
+    }
+
+    @-moz-keyframes plainplay {
+        from { background-position: 0; }
+        to { background-position: -300%; }  /* <-- width of spritesheet*/
+    }
+
+    @-o-keyframes plainplay {
+        from { background-position: 0; }
+        to { background-position: -300%; }  /* <-- width of spritesheet*/
+    }
+
+    @keyframes plainplay {
+        from { background-position: 0; }
+        to { background-position: -300%; }  /* <-- width of spritesheet*/
+    }
+
+    .plainfish {
+        width: 300px;
+        height: 255px;
+        background-image: url("../imgs/spritesheet-new.png"); /* <-- url to spritesheet*/
+        margin: 0 auto; 
+        background-size: 1200% 100%; /* x=7200/600*100, y=510/510*100 */  
+        background-position: 0 0; 
+        -webkit-animation: plainplay 0.3s steps(3) infinite; 
+        -moz-animation: plainplay 0.3s steps(3) infinite;
+        -o-animation: plainplay 0.3s steps(3) infinite;
+        animation: plainplay 0.3s steps(3) infinite; /* <-- animation parameters, see below*/
+    }​
+
+/*spritesheet-specific media query*/
+    @media screen and (min-width:720px) {
+        .plainfish, .brushfish, .leaffish, .bubblefish {
+            width: 600px;
+            height: 510px;
+        }
+    }
+
+
+/*BRUSH OPTIONS*/
+#brushkit {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 2%;
+}
+
+#watercolor {
+    background-image: url("../imgs/sinbad-brushes-01.png");
+    width: 60px; /* 417 full */
+    height: 60px;
+    background-size: cover;
+    display: inline-block;
+    margin: 0 5% 0 1%;
+}
+
+#leaves {
+    background-image: url("../imgs/sinbad-brushes-03.png");
+    width: 60px; /* 417 full */
+    height: 60px;
+    background-size: cover;
+    display: inline-block;
+    margin: 0 5% 0 0%;
+}
+
+#bubbles {
+    background-image: url("../imgs/sinbad-brushes-02.png");
+    width: 60px; /* 417 full */
+    height: 60px;
+    background-size: cover;
+    display: inline-block;
+    margin: 0 1% 0 0%;
+}
+
+
+/*FOR ANDROID <480px*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    body {
+        height: 100%;
+    }
+
+    .loading, .complete {
+        height: 10%;
+    }
+
+
+    #game-wrapper {
+        text-align: center;
+        font-size: 0.75em;
+        height: 90%;
+        /*display: table;*/
+        width:100%;
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+
+    #game-wrapper .vert-align {
+        margin: 2% auto 2% auto;
+        height: 25%;
+        /*display: table-row;*/
+        vertical-align: middle;
+    }
+}
