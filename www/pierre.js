@@ -49,7 +49,7 @@
 
 		////barbody
 		var barBody = phys.makeBox(barW, barH, world, SCALE, true);		
-		barBody.SetPosition(new b2Vec2(stageW/2/SCALE, stageH/2/SCALE));
+		barBody.SetPosition(new b2Vec2(1000/2/SCALE, 1000/2/SCALE));
 
 		//////Big WHeel
 		var bigWheelBody = phys.makeCircle(bigR, world, SCALE, true);		
@@ -74,29 +74,29 @@
 		var bigWheelAxis = new b2RevoluteJointDef();
 		bigWheelAxis.Initialize(bigWheelBody, barBody, bigWheelBody.GetWorldCenter());
 		bigWheelAxis.enableMotor = true;
-		bigWheelAxis.maxMotorTorque = 2000;
-		bigWheelAxis.motorSpeed = 2000;
+		bigWheelAxis.maxMotorTorque = -2000;
+		bigWheelAxis.motorSpeed = -2000;
 		world.CreateJoint(bigWheelAxis);
 
 		var smallWheelAxis = new b2RevoluteJointDef();
 		smallWheelAxis.Initialize(smallWheelBody, barBody, smallWheelBody.GetWorldCenter());
 		smallWheelAxis.enableMotor = true;
-		smallWheelAxis.maxMotorTorque = 2000;
-		smallWheelAxis.motorSpeed = 2000;
+		smallWheelAxis.maxMotorTorque = -2000;
+		smallWheelAxis.motorSpeed = -2000;
 		world.CreateJoint(smallWheelAxis);
 
 		var mediumWheelAxis = new b2RevoluteJointDef();
 		mediumWheelAxis.Initialize(mediumWheelBody, barBody, mediumWheelBody.GetWorldCenter());
 		mediumWheelAxis.enableMotor = true;
-		mediumWheelAxis.maxMotorTorque = 2000;
-		mediumWheelAxis.motorSpeed = 2000;
+		mediumWheelAxis.maxMotorTorque = -3000;
+		mediumWheelAxis.motorSpeed = -2000;
 		world.CreateJoint(mediumWheelAxis);
 
 		var extraMediumWheelAxis = new b2RevoluteJointDef();
 		extraMediumWheelAxis.Initialize(extraMediumWheelBody, barBody, extraMediumWheelBody.GetWorldCenter());
 		extraMediumWheelAxis.enableMotor = true;
-		extraMediumWheelAxis.maxMotorTorque = 2000;
-		extraMediumWheelAxis.motorSpeed = 2000;
+		extraMediumWheelAxis.maxMotorTorque = -2000;
+		extraMediumWheelAxis.motorSpeed = -2000;
 		world.CreateJoint(extraMediumWheelAxis);
 
 
