@@ -18,7 +18,8 @@
 	
 	function init() {
 
-		
+		var right1 = -10;
+		var right2 = 0;
 		var canvas = zid('debugCanvas');
 		var stageW = canvas.width;
 		var stageH = canvas.height;
@@ -32,7 +33,7 @@
 		// so we have to scale everything down to get to pixels
 		var SCALE = 30, STEP = 20, TIMESTEP = 1/STEP; //step is how many times it refreshes. scale is cuz of meters
 		
-		var world = new b2World(new b2Vec2(0,10), true); // gravity, allow sleep
+		var world = new b2World(new b2Vec2(right1,right2), false); // gravity, allow sleep
 		var debug = new phys.Debug(canvas, world, SCALE);
 		
 		var rect = {x:0, y:0, width:stageW, height:stageH};
@@ -46,11 +47,13 @@
 		var smallR = 45 / SCALE;
 		var medR = 75 / SCALE;
 		var extraMedR = 75 / SCALE;
+		var direction = 2000;
 
 		////barbody
 		var barBody = phys.makeBox(barW, barH, world, SCALE, true);		
 		barBody.SetPosition(new b2Vec2(1000/2/SCALE, 1000/2/SCALE));
-
+		
+		
 		//////Big WHeel
 		var bigWheelBody = phys.makeCircle(bigR, world, SCALE, true);		
 		bigWheelBody.SetPosition(new b2Vec2(300/SCALE, 300/SCALE));
@@ -74,31 +77,30 @@
 		var bigWheelAxis = new b2RevoluteJointDef();
 		bigWheelAxis.Initialize(bigWheelBody, barBody, bigWheelBody.GetWorldCenter());
 		bigWheelAxis.enableMotor = true;
-		bigWheelAxis.maxMotorTorque = -2000;
-		bigWheelAxis.motorSpeed = -2000;
+		bigWheelAxis.maxMotorTorque = 2000;
+		bigWheelAxis.motorSpeed = direction;
 		world.CreateJoint(bigWheelAxis);
 
 		var smallWheelAxis = new b2RevoluteJointDef();
 		smallWheelAxis.Initialize(smallWheelBody, barBody, smallWheelBody.GetWorldCenter());
 		smallWheelAxis.enableMotor = true;
-		smallWheelAxis.maxMotorTorque = -2000;
-		smallWheelAxis.motorSpeed = -2000;
+		smallWheelAxis.maxMotorTorque = 2000;
+		smallWheelAxis.motorSpeed = direction;
 		world.CreateJoint(smallWheelAxis);
 
 		var mediumWheelAxis = new b2RevoluteJointDef();
 		mediumWheelAxis.Initialize(mediumWheelBody, barBody, mediumWheelBody.GetWorldCenter());
 		mediumWheelAxis.enableMotor = true;
-		mediumWheelAxis.maxMotorTorque = -3000;
-		mediumWheelAxis.motorSpeed = -2000;
+		mediumWheelAxis.maxMotorTorque = 3000;
+		mediumWheelAxis.motorSpeed = direction;
 		world.CreateJoint(mediumWheelAxis);
 
 		var extraMediumWheelAxis = new b2RevoluteJointDef();
 		extraMediumWheelAxis.Initialize(extraMediumWheelBody, barBody, extraMediumWheelBody.GetWorldCenter());
 		extraMediumWheelAxis.enableMotor = true;
-		extraMediumWheelAxis.maxMotorTorque = -2000;
-		extraMediumWheelAxis.motorSpeed = -2000;
+		extraMediumWheelAxis.maxMotorTorque = 2000;
+		extraMediumWheelAxis.motorSpeed = direction;
 		world.CreateJoint(extraMediumWheelAxis);
-
 
 		//CREATEJS
 		
@@ -123,7 +125,6 @@
 		boxBody.regX = barW/2;
 		boxBody.regY = barW/2;
 
-
 		//bigR createjs shape
 		var bigeye = new createjs.Bitmap("images/bigeye.png");
 		stage.addChild(bigeye);
@@ -133,7 +134,6 @@
 		bigeye.regX = bigR;
 		bigeye.regY = bigR;
 
-		
 		//med createjs shape
 		var smalleye = new createjs.Bitmap("images/smalleye.png");
 		stage.addChild(smalleye);
@@ -155,23 +155,36 @@
 		stage.addChild(extraMedWheel);
 		mapManager.add(new phys.Map(extraMediumWheelBody, extraMedWheel, "extraMedWheel", SCALE));
 
-
+		//bg
 		var i=1, hue=0;
-		function bgHue() {
-		hue += i;
-		if(hue >= 360){ 
-		hue=0; 
-		}
-		var canvas = document.getElementById("myCanvas");
-		canvas.style.background =  "hsl("+hue+",50%, 50%)";
-		} 
 
+		function bgHue() {
+			hue += i;
+			if(hue >= 360){ 
+				hue=0; 
+			}
+			var canvas = document.getElementById("myCanvas");
+			canvas.style.background =  "hsl("+hue+",50%, 50%)";
+		} 
 		setInterval(bgHue,1);
+
+		//flip gravity
+		document.addEventListener("mousedown", function(e){
+			if (right1 == -10){
+				right1 = 10;
+				right2 = -10;
+			}else{
+				right1 = -10;
+				right2 = 10;
+			}
+		});
+
 
 		// update world
 		function update() {
-			requestAnimationFrame(update); 			
-			world.Step(TIMESTEP, 10, 10);	
+			requestAnimationFrame(update); 		
+			world.SetGravity(new b2Vec2(right1, right2));	
+			world.Step(TIMESTEP, 10, 10);
 			world.ClearForces();
 	   		//debug.update();
 			mapManager.update(); // note, the added update for the maps after stepping
