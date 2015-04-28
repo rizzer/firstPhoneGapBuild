@@ -178,8 +178,8 @@
 		} 
 		setInterval(bgHue,1);
 
-		//flip gravity
-		document.addEventListener("touchstart", function(e){
+		//flip gravity & direction
+		$(document).on('click touchstart', function(e){
 
 			if (right1 == -10){
 				right1 = 10;

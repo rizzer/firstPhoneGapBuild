@@ -34,11 +34,7 @@
 	                    $.mobile.changePage(prevpage, { transition: "slide", reverse: false, changeHash: true });
 	                }
             	});
-	            // $('.pages').on("swipeleft", function () {
-	            // 	console.log("swipesleft");
-             //        $.mobile.changePage("#main");
-	            // });
-
+	          
 	            $('.pages').on("swiperight", function () {
 	            	console.log("swipesright");
 	                var prevpage = $(this).prev('div[data-role="page"]');
@@ -50,8 +46,7 @@
 	    });
   	</script> 
     <script src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/jquery/jquery-ui.min.js"></script>
-    <script src="js/jquery/jquery.ui.touch-punch.min.js"></script>
+  
 
 	<script src="http://d309knd7es5f10.cloudfront.net/zim_1.3.js"></script>
 	<script src="http://code.createjs.com/createjs-2014.12.12.min.js"></script>
