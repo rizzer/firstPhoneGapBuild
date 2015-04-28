@@ -26,16 +26,24 @@
 	        //PAGE SWIPES
 	        $(document).on('pageinit', function(event){
 
-	            $('.pages').on("swipeleft", function () {
+        		$('.pages').on("swipeleft", function () {
 	            	console.log("swipesleft");
-                    $.mobile.changePage("#title");
-	            });
+	                var prevpage = $(this).next('div[data-role="page"]');
+	                console.log(prevpage);
+	                if (prevpage.length > 0) {
+	                    $.mobile.changePage(prevpage, { transition: "slide", reverse: false, changeHash: true });
+	                }
+            	});
+	            // $('.pages').on("swipeleft", function () {
+	            // 	console.log("swipesleft");
+             //        $.mobile.changePage("#main");
+	            // });
 
 	            $('.pages').on("swiperight", function () {
 	            	console.log("swipesright");
 	                var prevpage = $(this).prev('div[data-role="page"]');
 	                if (prevpage.length > 0) {
-	                    $.mobile.changePage(prevpage, { transition: "slide", reverse: true, changeHash: false });
+	                    $.mobile.changePage(prevpage, { transition: "slide", reverse: true, changeHash: true });
 	                }
 	            });
 	        });
@@ -55,15 +63,16 @@
 </head>
 
 <body>
+	<div class="pages" id="title" data-role="page">
+        <h1>Tap the screen to flip Gravity on Pierre~</h1>
+    </div>
 
 	<div class="pages" id="main" data-role="page">
 		<canvas id="debugCanvas" width="768" height="1024"></canvas>
 		<canvas id="myCanvas" width="768" height="1024"></canvas>
 	</div>
 
-	 <div class="pages" id="title" data-role="page">
-        <h1>Tap the screen to flip Gravity on Pierre~</h1>
-    </div>
+	 
 
 
 </body>

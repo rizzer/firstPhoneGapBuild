@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Box2D CreateJS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+	<style>
+		html{margin: 0; padding: 0;}
+		body{margin: 0; padding: 0; font-family: 'Fredoka One', cursive;}
+
+		#myCanvas {
+			position:absolute; 
+			background-color:#dddddd; 
+			margin: 0px auto; 
+			padding: 0;
+		}
+
+		#debugCanvas {
+			position:absolute; 
+			z-index:2; 
+			margin: 0px auto; 
+			padding: 0;}
+
+		h1{
+			margin-top: 300px;
+		}
+		.pages{
+			-webkit-transform: translate3d(0px, 0px, 0px);
+		}
+	</style>
+
+	<script src="js/jquery/jquery-1.11.2.min.js"></script>
+	<script>  
+	    $(document).ready(function() {
+	        console.log("hello");
+
+	        //PAGE SWIPES
+	        $(document).on('pageinit', function(event){
+
+	            $('.pages').on("swipeleft", function () {
+	            	console.log("swipesleft");
+                    $.mobile.changePage("#title");
+	            });
+
+	            $('.pages').on("swiperight", function () {
+	            	console.log("swipesright");
+	                var prevpage = $(this).prev('div[data-role="page"]');
+	                if (prevpage.length > 0) {
+	                    $.mobile.changePage(prevpage, { transition: "slide", reverse: true, changeHash: false });
+	                }
+	            });
+	        });
+	    });
+  	</script> 
+    <script src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery/jquery-ui.min.js"></script>
+    <script src="js/jquery/jquery.ui.touch-punch.min.js"></script>
+
+	<script src="http://d309knd7es5f10.cloudfront.net/zim_1.3.js"></script>
+	<script src="http://code.createjs.com/createjs-2014.12.12.min.js"></script>
+	<script src="Box2dWeb-2.1.a.3.min.js"></script>
+	<script src="phys.js"></script>
+	<script src="pierre.js"></script>
+
+	
+</head>
+
+<body>
+
+	<div class="pages" id="main" data-role="page">
+		<canvas id="debugCanvas" width="1280" height="720"></canvas>
+		<canvas id="myCanvas" width="1280" height="720"></canvas>
+	</div>
+
+	 <div class="pages" id="title" data-role="page">
+        <h1>Tap the screen to flip Gravity on Pierre~</h1>
+    </div>
+
+
+</body>
+
+</html>

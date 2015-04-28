@@ -69,8 +69,8 @@
 		//////extraMedium Wheel
 		var extraMediumWheelBody = phys.makeCircle(extraMedR, world, SCALE, true);		
 		extraMediumWheelBody.SetPosition(new b2Vec2(300/SCALE, 700/SCALE));
-
-		var drag = new phys.Drag(canvas, world, SCALE);
+		console.log("hello this is INIT");
+		
 
 		//joints
 
@@ -121,7 +121,7 @@
 		stage.addChild(boxBody);
 		mapManager.add(new phys.Map(barBody, boxBody, "boxBody", SCALE));
 		boxBody.setBounds(0,0,barW,barH);
-		console.log(boxBody.getBounds());
+		// console.log(boxBody.getBounds());
 		boxBody.regX = barW/2;
 		boxBody.regY = barW/2;
 
@@ -130,7 +130,7 @@
 		stage.addChild(bigeye);
 		mapManager.add(new phys.Map(bigWheelBody, bigeye, "bigWheel",SCALE));
 		bigeye.setBounds(0,0,bigR);
-		console.log(bigeye.getBounds());
+		// console.log(bigeye.getBounds());
 		bigeye.regX = bigR;
 		bigeye.regY = bigR;
 
@@ -139,7 +139,7 @@
 		stage.addChild(smalleye);
 		mapManager.add(new phys.Map(mediumWheelBody, smalleye, "medWheel",SCALE));
 		smalleye.setBounds(0,0,medR);
-		console.log(smalleye.getBounds());
+		// console.log(smalleye.getBounds());
 		smalleye.regX = medR;
 		smalleye.regY = medR;
 
@@ -173,9 +173,12 @@
 			if (right1 == -10){
 				right1 = 10;
 				right2 = -10;
+				console.log("down");
+				
 			}else{
 				right1 = -10;
 				right2 = 10;
+				console.log("up");
 			}
 		});
 
@@ -186,10 +189,10 @@
 			world.SetGravity(new b2Vec2(right1, right2));	
 			world.Step(TIMESTEP, 10, 10);
 			world.ClearForces();
-	   		//debug.update();
+	   		// debug.update();
 			mapManager.update(); // note, the added update for the maps after stepping
 			stage.update();
-			drag.update();
+			// drag.update();
 		}
 		update();
 	}
