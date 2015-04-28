@@ -166,20 +166,20 @@
 		mapManager.add(new phys.Map(extraMediumWheelBody, extraMedWheel, "extraMedWheel", SCALE));
 
 		//bg
-		var i=1, hue=0;
+		// var i=1, hue=0;
 
-		function bgHue() {
-			hue += i;
-			if(hue >= 360){ 
-				hue=0; 
-			}
-			var canvas = document.getElementById("myCanvas");
-			canvas.style.background =  "hsl("+hue+",50%, 50%)";
-		} 
-		setInterval(bgHue,1);
+		// function bgHue() {
+		// 	hue += i;
+		// 	if(hue >= 360){ 
+		// 		hue=0; 
+		// 	}
+		// 	var canvas = document.getElementById("myCanvas");
+		// 	canvas.style.background =  "hsl("+hue+",50%, 50%)";
+		// } 
+		// setInterval(bgHue,1);
 
 		//flip gravity & direction
-		$(document).on('click touchstart', function(e){
+		$(document).on('touchstart click', function(e){
 
 			if (right1 == -10){
 				right1 = 10;
