@@ -13,6 +13,7 @@
 	var b2AABB = Box2D.Collision.b2AABB; //wtf
 	var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;  //redraw the debugger canvas i guess
 	var b2RevoluteJointDef = Box2D.Dynamics.Joints.b2RevoluteJointDef;
+	var b2RevoluteJoint = Box2D.Dynamics.Joints.b2RevoluteJoint;
 	
 	window.addEventListener("load", init);
 	
@@ -36,9 +37,22 @@
 		var world = new b2World(new b2Vec2(right1,right2), false); // gravity, allow sleep
 		var debug = new phys.Debug(canvas, world, SCALE);
 		
-		var rect = {x:0, y:0, width:stageW, height:stageH};
-		phys.borders(rect, world, SCALE); // puts borders around canvas
+		// var rect = {x:0, y:0, width:stageW, height:stageH};
+		// phys.borders(rect, world, SCALE); // puts borders around canvas
+
+		var leftWall = phys.makeBox(1, stageH, world, SCALE, false);		
+		leftWall.SetPosition(new b2Vec2(-.5, stageH/2/SCALE));
 		
+		var topWall = phys.makeBox(stageW, 1, world, SCALE, false);		
+		topWall.SetPosition(new b2Vec2(stageW/2/SCALE, -.5));
+		
+		var rightWall = phys.makeBox(1, stageH, world, SCALE, false);		
+		rightWall.SetPosition(new b2Vec2(stageW/SCALE+.5, stageH/2/SCALE));
+
+		var bottomWall = phys.makeBox(stageW, 1, world, SCALE, false);		
+		bottomWall.SetPosition(new b2Vec2(stageW/2/SCALE, stageH/SCALE +.5));
+
+
 		var boxW = 200 / SCALE;
 		var boxH = 200 / SCALE;
 		var barW = 400 / SCALE;
@@ -47,7 +61,7 @@
 		var smallR = 45 / SCALE;
 		var medR = 75 / SCALE;
 		var extraMedR = 75 / SCALE;
-		var direction = 2000;
+		var direction = 4000;
 
 		////barbody
 		var barBody = phys.makeBox(barW, barH, world, SCALE, true);		
@@ -77,30 +91,30 @@
 		var bigWheelAxis = new b2RevoluteJointDef();
 		bigWheelAxis.Initialize(bigWheelBody, barBody, bigWheelBody.GetWorldCenter());
 		bigWheelAxis.enableMotor = true;
-		bigWheelAxis.maxMotorTorque = 2000;
+		bigWheelAxis.maxMotorTorque = direction;
 		bigWheelAxis.motorSpeed = direction;
-		world.CreateJoint(bigWheelAxis);
+		var bigWheelRevoluteJoint = world.CreateJoint(bigWheelAxis);
 
 		var smallWheelAxis = new b2RevoluteJointDef();
 		smallWheelAxis.Initialize(smallWheelBody, barBody, smallWheelBody.GetWorldCenter());
 		smallWheelAxis.enableMotor = true;
-		smallWheelAxis.maxMotorTorque = 2000;
+		smallWheelAxis.maxMotorTorque = direction;
 		smallWheelAxis.motorSpeed = direction;
-		world.CreateJoint(smallWheelAxis);
+		var smallWheelRevoluteJoint = world.CreateJoint(smallWheelAxis);
 
 		var mediumWheelAxis = new b2RevoluteJointDef();
 		mediumWheelAxis.Initialize(mediumWheelBody, barBody, mediumWheelBody.GetWorldCenter());
 		mediumWheelAxis.enableMotor = true;
-		mediumWheelAxis.maxMotorTorque = 3000;
+		mediumWheelAxis.maxMotorTorque = direction;
 		mediumWheelAxis.motorSpeed = direction;
-		world.CreateJoint(mediumWheelAxis);
+		var mediumWheelRevoluteJoint = world.CreateJoint(mediumWheelAxis);
 
 		var extraMediumWheelAxis = new b2RevoluteJointDef();
 		extraMediumWheelAxis.Initialize(extraMediumWheelBody, barBody, extraMediumWheelBody.GetWorldCenter());
 		extraMediumWheelAxis.enableMotor = true;
-		extraMediumWheelAxis.maxMotorTorque = 2000;
+		extraMediumWheelAxis.maxMotorTorque = direction;
 		extraMediumWheelAxis.motorSpeed = direction;
-		world.CreateJoint(extraMediumWheelAxis);
+		var extraMediumWheelRevoluteJoint = world.CreateJoint(extraMediumWheelAxis);
 
 		//CREATEJS
 		
@@ -174,12 +188,30 @@
 				right1 = 10;
 				right2 = -10;
 				console.log("down");
-				
+				bigWheelRevoluteJoint.m_motorSpeed = -(direction);
+				smallWheelRevoluteJoint.m_motorSpeed = -(direction);
+				mediumWheelRevoluteJoint.m_motorSpeed = -(direction);
+				extraMediumWheelRevoluteJoint.m_motorSpeed = -(direction);
+
+
 			}else{
 				right1 = -10;
 				right2 = 10;
 				console.log("up");
+				bigWheelRevoluteJoint.m_motorSpeed = direction;
+				smallWheelRevoluteJoint.m_motorSpeed = direction;
+				mediumWheelRevoluteJoint.m_motorSpeed = direction;
+				extraMediumWheelRevoluteJoint.m_motorSpeed = direction;
 			}
+			// world.CreateJoint(bigWheelAxis);
+			// world.CreateJoint(smallWheelAxis);
+			// world.CreateJoint(mediumWheelAxis);
+			// world.CreateJoint(extraMediumWheelAxis);
+			console.log(bigWheelRevoluteJoint.m_motorSpeed);
+			console.log(smallWheelRevoluteJoint.m_motorSpeed);
+			console.log(mediumWheelRevoluteJoint.m_motorSpeed);
+			console.log(extraMediumWheelRevoluteJoint.m_motorSpeed);
+			//console.log(bigWheelRevoluteJoint.GetMotorSpeed());
 		});
 
 
@@ -193,6 +225,7 @@
 			mapManager.update(); // note, the added update for the maps after stepping
 			stage.update();
 			// drag.update();
+
 		}
 		update();
 	}
