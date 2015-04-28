@@ -52,7 +52,6 @@
 		var bottomWall = phys.makeBox(stageW, 1, world, SCALE, false);		
 		bottomWall.SetPosition(new b2Vec2(stageW/2/SCALE, stageH/SCALE +.5));
 
-
 		var boxW = 200 / SCALE;
 		var boxH = 200 / SCALE;
 		var barW = 400 / SCALE;
@@ -66,7 +65,6 @@
 		////barbody
 		var barBody = phys.makeBox(barW, barH, world, SCALE, true);		
 		barBody.SetPosition(new b2Vec2(1000/2/SCALE, 1000/2/SCALE));
-		
 		
 		//////Big WHeel
 		var bigWheelBody = phys.makeCircle(bigR, world, SCALE, true);		
@@ -83,8 +81,6 @@
 		//////extraMedium Wheel
 		var extraMediumWheelBody = phys.makeCircle(extraMedR, world, SCALE, true);		
 		extraMediumWheelBody.SetPosition(new b2Vec2(300/SCALE, 700/SCALE));
-		console.log("hello this is INIT");
-		
 
 		//joints
 
@@ -183,7 +179,8 @@
 		setInterval(bgHue,1);
 
 		//flip gravity
-		document.addEventListener("mousedown", function(e){
+		document.addEventListener("click", function(e){
+
 			if (right1 == -10){
 				right1 = 10;
 				right2 = -10;
@@ -192,8 +189,6 @@
 				smallWheelRevoluteJoint.m_motorSpeed = -(direction);
 				mediumWheelRevoluteJoint.m_motorSpeed = -(direction);
 				extraMediumWheelRevoluteJoint.m_motorSpeed = -(direction);
-
-
 			}else{
 				right1 = -10;
 				right2 = 10;
@@ -203,17 +198,8 @@
 				mediumWheelRevoluteJoint.m_motorSpeed = direction;
 				extraMediumWheelRevoluteJoint.m_motorSpeed = direction;
 			}
-			// world.CreateJoint(bigWheelAxis);
-			// world.CreateJoint(smallWheelAxis);
-			// world.CreateJoint(mediumWheelAxis);
-			// world.CreateJoint(extraMediumWheelAxis);
-			console.log(bigWheelRevoluteJoint.m_motorSpeed);
-			console.log(smallWheelRevoluteJoint.m_motorSpeed);
-			console.log(mediumWheelRevoluteJoint.m_motorSpeed);
-			console.log(extraMediumWheelRevoluteJoint.m_motorSpeed);
-			//console.log(bigWheelRevoluteJoint.GetMotorSpeed());
-		});
 
+		});
 
 		// update world
 		function update() {
@@ -224,8 +210,6 @@
 	   		// debug.update();
 			mapManager.update(); // note, the added update for the maps after stepping
 			stage.update();
-			// drag.update();
-
 		}
 		update();
 	}
