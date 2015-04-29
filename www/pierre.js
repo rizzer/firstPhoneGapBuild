@@ -176,7 +176,7 @@
 		// 	var canvas = document.getElementById("myCanvas");
 		// 	canvas.style.background =  "hsl("+hue+",50%, 50%)";
 		// } 
-		// setInterval(bgHue,1);
+		// setInterval(bgHue,1)
 
 		
 		$(document).on('touchstart click', function(e){
