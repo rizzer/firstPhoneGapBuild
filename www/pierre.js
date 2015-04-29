@@ -178,7 +178,7 @@
 		// } 
 		// setInterval(bgHue,1);
 
-		//flip gravity & direction
+		
 		$(document).on('touchstart click', function(e){
 
 			if (right1 == -10){
